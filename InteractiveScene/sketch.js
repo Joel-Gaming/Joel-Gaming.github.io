@@ -1,12 +1,18 @@
 // Maze
 // Joel Penner
-// September 
+// Oct 3, 2022
 
+let state = "start";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  background(0);
+  if (state === "start") {
+    background(255);
+  }
+  if (state === "maze") {
+    background(0);
+  }
 }
