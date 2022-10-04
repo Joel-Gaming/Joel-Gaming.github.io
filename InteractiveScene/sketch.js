@@ -17,12 +17,25 @@ function draw() {
   }
 }
 
-function drawSquare() {
+function drawStartSquare() {
   fill("green");
   square(0, 0, 25);
 }
 
-function maze() {
-  drawSquare();
+function drawEndSquare() {
+  fill("red");
+  square();
+}
+
+function drawMaze() {
+  if (state === "start") {
+    background(255);
+    drawStartSquare();
+    drawEndSquare();
+    square(10, 10, 10);
+  }
+  if (state === "maze") {
+    background(0);
+  }
   square(10, 10, 10);
 }
