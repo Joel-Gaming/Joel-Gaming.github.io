@@ -16,3 +16,13 @@ function draw() {
     background(0);
   }
 }
+
+function drawSquare() {
+  fill("green");
+  square(0, 0, 25);
+}
+
+function maze() {
+  drawSquare();
+  square(10, 10, 10);
+}
