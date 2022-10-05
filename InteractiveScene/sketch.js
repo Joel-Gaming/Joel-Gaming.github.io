@@ -3,16 +3,22 @@
 // Oct 3, 2022
 
 let state = "start";
+let x = 5;
+let y = 5;
 let wallLongWidth = 30;
 let wallShortWidth = 15;
 let wallLongHeight = 50;
 let wallShortHeight = 15;
+let squareSpeed = 5;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  background(255);
 }
 
 function draw() {
+  handleKeys();
+  drawSquare();
   drawMaze();
 }
 
@@ -22,7 +28,7 @@ function drawStartSquare() {
 }
 
 function drawPath() {
-  fill("black");
+  fill(0);
   rect(30, 5, wallLongWidth, wallShortHeight);
   rect(50, 5, wallShortWidth, wallLongHeight);
   rect(35, 50, wallLongWidth, wallShortHeight);
@@ -35,6 +41,7 @@ function drawPath() {
   rect(30, 155, wallLongWidth, wallShortHeight);
   rect(0, 155, wallLongWidth, wallShortHeight);
   rect(0, 155, wallShortWidth, wallLongHeight);
+  rect(0, 205, wallLongWidth, wallShortHeight);
   
 }
 
@@ -45,20 +52,41 @@ function drawEndSquare() {
 
 function drawMaze() {
   if (state === "start") {
-    background(255);
+    background(220);
+    handleKeys();
     drawStartSquare();
     drawEndSquare();
     drawPath();
-    fill("white");
-    square(5, 5, 10);
+
     state = "maz";
   }
+  
   else if (state === "maze") {
     background(0);
     drawStartSquare();
     drawEndSquare();
     drawPath();
     fill("white");
-    square(5, 5, 10);
   }
+}
+
+function handleKeys() {
+  if (keyIsDown(87)) { //w
+    y -= squareSpeed;
+  }
+  if (keyIsDown(83)) { //s
+    y += squareSpeed;
+  }
+  if (keyIsDown(68)) { //d
+    x += squareSpeed;
+  }
+  if (keyIsDown(65)) { //a
+    x -= squareSpeed;
+  }
+}
+
+function drawSquare() {
+  fill("white");
+  noStroke();
+  square(x, y, 10);
 }
