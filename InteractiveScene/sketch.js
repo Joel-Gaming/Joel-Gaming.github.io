@@ -53,7 +53,7 @@ function drawEndSquare() {
 
 function drawMaze() {
   if (state === "start") {
-    background(220);
+    background(255);
     handleKeys();
     drawStartSquare();
     drawEndSquare();
@@ -90,4 +90,12 @@ function drawSquare() {
   fill("white");
   noStroke();
   square(x, y, 10);
+}
+
+function respawnSquare() {
+  drawSquare();
+}
+
+function SquareInsideRect(left, right, top,  bottom) {
+  return squareSpeed - x >= left && squareSpeed + x <= right && squareSpeed - y >= top && squareSpeed + y <= bottom;
 }
