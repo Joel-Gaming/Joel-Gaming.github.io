@@ -42,7 +42,8 @@ function drawPath() {
   rect(0, 155, wallLongWidth, wallShortHeight);
   rect(0, 155, wallShortWidth, wallLongHeight);
   rect(0, 205, wallLongWidth, wallShortHeight);
-  
+  rect(30, 205, wallShortWidth, wallLongHeight);
+  rect();
 }
 
 function drawEndSquare() {
