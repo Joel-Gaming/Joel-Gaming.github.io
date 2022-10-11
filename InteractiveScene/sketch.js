@@ -27,12 +27,11 @@ function drawStartSquare() {
   square(0, 0, 30);
 }
 
-function eventSpot(a, b) {
+function eventSpace(a, b) {
   fill("yellow");
   square(a, b, 15);
 }
   
-
 function drawPath() {
   fill(0);
   rect(30, 5, wallLongWidth, wallShortHeight);
