@@ -58,11 +58,13 @@ function drawMaze() {
     drawStartSquare();
     drawEndSquare();
     drawPath();
-
+  }
+  
+  if (state === "change") {
     state = "maze";
   }
   
-  while (state === "maze") {
+  if (state === "maze") {
     background(0);
     drawStartSquare();
     drawEndSquare();
@@ -72,20 +74,36 @@ function drawMaze() {
 }
 
 function handleKeys() {
-  if (keyIsDown(87)) { //w
-    y -= squareSpeed;
+  if (movementState === "normal") {
+    if (keyIsDown(87)) { //w
+      y -= squareSpeed;
+    }
+    if (keyIsDown(83)) { //s
+      y += squareSpeed;
+    }
+    if (keyIsDown(68)) { //d
+      x += squareSpeed;
+    }
+    if (keyIsDown(65)) { //a
+      x -= squareSpeed;
+    }
   }
-  if (keyIsDown(83)) { //s
-    y += squareSpeed;
+  
+  else if (movementState === "reversed") {
+        if (keyIsDown(87)) { //w
+      y += squareSpeed;
+    }
+    if (keyIsDown(83)) { //s
+      y -= squareSpeed;
+    }
+    if (keyIsDown(68)) { //d
+      x -= squareSpeed;
+    }
+    if (keyIsDown(65)) { //a
+      x += squareSpeed:
+    }
   }
-  if (keyIsDown(68)) { //d
-    x += squareSpeed;
-  }
-  if (keyIsDown(65)) { //a
-    x -= squareSpeed;
-  }
-}
-
+  
 function drawSquare() {
   fill("white");
   noStroke();
