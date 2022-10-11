@@ -10,6 +10,7 @@ let wallShortWidth = 15;
 let wallLongHeight = 50;
 let wallShortHeight = 15;
 let squareSpeed = 5;
+let movementState = "normal";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -27,6 +28,13 @@ function drawStartSquare() {
   square(0, 0, 30);
 }
 
+function eventSpot(a, b,) {
+  fill("yellow");
+  square(a, b, 15);
+  touchStarted();
+}
+  
+
 function drawPath() {
   fill(0);
   rect(30, 5, wallLongWidth, wallShortHeight);
@@ -43,13 +51,17 @@ function drawPath() {
   rect(0, 155, wallShortWidth, wallLongHeight);
   rect(0, 205, wallLongWidth, wallShortHeight);
   rect(30, 205, wallShortWidth, wallLongHeight);
-  rect();
+  eventSpace(45, 40);
 }
 
 function drawEndSquare() {
   fill("red");
   square(windowWidth-25, windowHeight-25, 30);
 }
+
+function touchStarted() {
+  movementState = "reversed";
+} 
 
 function drawMaze() {
   if (state === "start") {
