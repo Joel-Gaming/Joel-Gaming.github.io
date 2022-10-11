@@ -96,6 +96,13 @@ function respawnSquare() {
   drawSquare();
 }
 
-function SquareInsideRect(left, right, top,  bottom) {
+function squareInsideRect(left, right, top,  bottom) {
   return squareSpeed - x >= left && squareSpeed + x <= right && squareSpeed - y >= top && squareSpeed + y <= bottom;
+  
+}
+
+function squareOutsideRect(left, right, top, bottom){
+  if (squareSpeed - x >= left && squareSpeed + x <= right && squareSpeed - y >= top && squareSpeed + y <= bottom){
+    respawnSquare();
+  }
 }
