@@ -28,7 +28,7 @@ function drawStartSquare() {
   square(0, 0, 30);
 }
 
-function eventSpot(a, b,) {
+function eventSpot(a, b) {
   fill("yellow");
   square(a, b, 15);
   touchStarted();
