@@ -94,8 +94,8 @@ function handleKeys() {
     }
   }
   
-  else if (movementState === "reversed") {
-        if (keyIsDown(87)) { //w
+  if (movementState === "reversed") {
+    if (keyIsDown(87)) { //w
       y += squareSpeed;
     }
     if (keyIsDown(83)) { //s
