@@ -13,13 +13,13 @@ let squareSpeed = 5;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(255);
 }
 
 function draw() {
+  background(255);
+  drawMaze();
   handleKeys();
   drawSquare();
-  drawMaze();
 }
 
 function drawStartSquare() {
@@ -59,10 +59,10 @@ function drawMaze() {
     drawEndSquare();
     drawPath();
 
-    state = "maz";
+    state = "maze";
   }
   
-  else if (state === "maze") {
+  while (state === "maze") {
     background(0);
     drawStartSquare();
     drawEndSquare();
@@ -97,12 +97,5 @@ function respawnSquare() {
 }
 
 function squareInsideRect(left, right, top,  bottom) {
-  return squareSpeed - x >= left && squareSpeed + x <= right && squareSpeed - y >= top && squareSpeed + y <= bottom;
-  
-}
-
-function squareOutsideRect(left, right, top, bottom){
-  if (squareSpeed - x >= left && squareSpeed + x <= right && squareSpeed - y >= top && squareSpeed + y <= bottom){
-    respawnSquare();
-  }
+  return squareSpeed - x >= left && squareSpeed + x <= right && squareSpeed - y >= top && squareSpeed + y <= bottom; 
 }
