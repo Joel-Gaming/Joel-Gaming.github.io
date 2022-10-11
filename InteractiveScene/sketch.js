@@ -30,7 +30,6 @@ function drawStartSquare() {
 function eventSpot(a, b) {
   fill("yellow");
   square(a, b, 15);
-  touchStarted();
 }
   
 
@@ -57,10 +56,6 @@ function drawEndSquare() {
   fill("red");
   square(windowWidth-25, windowHeight-25, 30);
 }
-
-function touchStarted() {
-  movementState = "reversed";
-} 
 
 function drawMaze() {
   if (state === "start") {
