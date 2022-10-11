@@ -16,7 +16,6 @@ function setup() {
 }
 
 function draw() {
-  background(255);
   drawMaze();
   handleKeys();
   drawSquare();
@@ -58,16 +57,19 @@ function drawMaze() {
     drawStartSquare();
     drawEndSquare();
     drawPath();
-
-    state = "maze";
   }
   
-  while (state === "maze") {
+  if (state === "change") {
+    state = "maze";
+  }
+
+  if (state === "maze") {
     background(0);
     drawStartSquare();
     drawEndSquare();
     drawPath();
     fill("white");
+    state = "change";
   }
 }
 
