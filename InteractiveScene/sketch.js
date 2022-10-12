@@ -11,10 +11,6 @@ let wallLongHeight = 50;
 let wallShortHeight = 15;
 let squareSpeed = 1;
 let movementState = "normal";
-let r = 255;
-let b = 0;
-let g = 255;
-let color = "yellow";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
