@@ -11,6 +11,10 @@ let wallLongHeight = 50;
 let wallShortHeight = 15;
 let squareSpeed = 1;
 let movementState = "normal";
+let r = 255;
+let b = 0;
+let g = 255;
+let color = "yellow";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -31,15 +35,18 @@ function drawReversedPath() {
   rect();
 }
 
-function trollBlock(w, h) {
-  fill("yellow");
-  square(w, h, wallShortWidth);
-  squareInsideSquare(w, h, wallShortWidth);
-}
+changemovemement() {
+  if (state === "normal") {
+    state = "reversed";
+  }
+  else
+    state = "normal";
 
-function squareInsideSquare(left, right, sides) {
-  if (x >= left && x <= right && y >= sides) {
-    movementState = "reversed";
+function trollBlock(w, h) {
+  fill(color);
+  square(w, h, wallShortWidth);'
+  if (r+b+g===color) {
+  changeMovement()
   }
 }
 
