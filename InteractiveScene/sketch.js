@@ -45,8 +45,8 @@ changemovemement() {
 function trollBlock(w, h) {
   fill(color);
   square(w, h, wallShortWidth);'
-  if (r+b+g===color) {
-  changeMovement()
+  if (r+b+g===color&&w===x&&h===y) {
+    changeMovement()
   }
 }
 
