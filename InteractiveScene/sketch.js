@@ -39,8 +39,9 @@ function changemovemement() {
   if (state === "normal") {
     state = "reversed";
   }
-  else
+  if (state === "reversed") {
     state = "normal";
+  }
 }
 
 function trollBlock(w, h) {
