@@ -34,7 +34,6 @@ function drawReversedPath() {
 function trollBlock(w, h) {
   fill(color);
   square(w, h, wallShortWidth);
-  changeMovement();
 }
 
 function drawPath() {
