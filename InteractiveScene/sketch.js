@@ -9,7 +9,12 @@ let wallLongWidth = 30;
 let wallShortWidth = 15;
 let wallLongHeight = 50;
 let wallShortHeight = 15;
+<<<<<<< HEAD
 let squareSpeed = 1;
+=======
+let squareSpeed = 5;
+let movementState = "normal";
+>>>>>>> acb973e4dda0b64b524e601009eb5c41486e0958
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -26,6 +31,7 @@ function drawStartSquare() {
   square(0, 0, 30);
 }
 
+<<<<<<< HEAD
 function drawTeleport(a, y) {
   fill("yellow");
   square(a, y, 15);
@@ -33,6 +39,13 @@ function drawTeleport(a, y) {
   square(a);
 }
 
+=======
+function eventSpace(a, b) {
+  fill("yellow");
+  square(a, b, 15);
+}
+  
+>>>>>>> acb973e4dda0b64b524e601009eb5c41486e0958
 function drawPath() {
   fill(0);
   rect(30, 5, wallLongWidth, wallShortHeight);
@@ -49,7 +62,11 @@ function drawPath() {
   rect(0, 155, wallShortWidth, wallLongHeight);
   rect(0, 205, wallLongWidth, wallShortHeight);
   rect(30, 205, wallShortWidth, wallLongHeight);
+<<<<<<< HEAD
   drawTeleport(45, 240);
+=======
+  eventSpace(45, 40);
+>>>>>>> acb973e4dda0b64b524e601009eb5c41486e0958
 }
 
 function drawEndSquare() {
@@ -64,12 +81,21 @@ function drawMaze() {
     drawStartSquare();
     drawEndSquare();
     drawPath();
+<<<<<<< HEAD
   }
   
   if (state === "change") {
     state = "maze";
   }
 
+=======
+  }
+  
+  if (state === "change") {
+    state = "maze";
+  }
+  
+>>>>>>> acb973e4dda0b64b524e601009eb5c41486e0958
   if (state === "maze") {
     background(0);
     drawStartSquare();
@@ -81,20 +107,36 @@ function drawMaze() {
 }
 
 function handleKeys() {
-  if (keyIsDown(87)) { //w
-    y -= squareSpeed;
+  if (movementState === "normal") {
+    if (keyIsDown(87)) { //w
+      y -= squareSpeed;
+    }
+    if (keyIsDown(83)) { //s
+      y += squareSpeed;
+    }
+    if (keyIsDown(68)) { //d
+      x += squareSpeed;
+    }
+    if (keyIsDown(65)) { //a
+      x -= squareSpeed;
+    }
   }
-  if (keyIsDown(83)) { //s
-    y += squareSpeed;
+  
+  if (movementState === "reversed") {
+    if (keyIsDown(87)) { //w
+      y += squareSpeed;
+    }
+    if (keyIsDown(83)) { //s
+      y -= squareSpeed;
+    }
+    if (keyIsDown(68)) { //d
+      x -= squareSpeed;
+    }
+    if (keyIsDown(65)) { //a
+      x += squareSpeed:
+    }
   }
-  if (keyIsDown(68)) { //d
-    x += squareSpeed;
-  }
-  if (keyIsDown(65)) { //a
-    x -= squareSpeed;
-  }
-}
-
+  
 function drawSquare() {
   fill("white");
   noStroke();
