@@ -35,7 +35,7 @@ function drawReversedPath() {
   rect();
 }
 
-changemovemement() {
+function changemovemement() {
   if (state === "normal") {
     state = "reversed";
   }
