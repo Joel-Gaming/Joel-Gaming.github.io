@@ -41,6 +41,7 @@ function changemovemement() {
   }
   else
     state = "normal";
+}
 
 function trollBlock(w, h) {
   fill(color);
