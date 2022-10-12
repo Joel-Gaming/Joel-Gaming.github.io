@@ -1,17 +1,23 @@
 let hit = false;
+let theColor;
 
-function setup() {
+function setup(){ 
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
   background(255);
-  circle(100, 100, 1);       
-  circle(mouseX, mouseY, 1); 
+  rect(200, 200, 100, 150);
+  rect(mouseX, mouseY, 50, 75);
 
-  hit = collidePointPoint(100, 100, mouseX, mouseY);
-  
+  hit = collideRectRect(200, 200, 100, 150, mouseX, mouseY, 50, 75);
 
-  stroke(hit ? color("red") : 0);
+  if (hit) {
+    theColor = "red";
+  }
+  else {
+    theColor = "black";
+  }
+  stroke(theColor);
   print("colliding?", hit);
 }

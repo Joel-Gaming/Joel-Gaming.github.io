@@ -9,12 +9,8 @@ let wallLongWidth = 30;
 let wallShortWidth = 15;
 let wallLongHeight = 50;
 let wallShortHeight = 15;
-<<<<<<< HEAD
 let squareSpeed = 1;
-=======
-let squareSpeed = 5;
 let movementState = "normal";
->>>>>>> acb973e4dda0b64b524e601009eb5c41486e0958
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -31,21 +27,22 @@ function drawStartSquare() {
   square(0, 0, 30);
 }
 
-<<<<<<< HEAD
-function drawTeleport(a, y) {
-  fill("yellow");
-  square(a, y, 15);
-  
-  square(a);
+function drawReversedPath() {
+  rect();
 }
 
-=======
-function eventSpace(a, b) {
+function trollBlock(w, h) {
   fill("yellow");
-  square(a, b, 15);
+  square(w, h, wallShortWidth);
+  squareInsideSquare(w, h, wallShortWidth);
 }
-  
->>>>>>> acb973e4dda0b64b524e601009eb5c41486e0958
+
+function squareInsideSquare(left, right, sides) {
+  if (x >= left && x <= right && y >= sides) {
+    movementState = "reversed";
+  }
+}
+
 function drawPath() {
   fill(0);
   rect(30, 5, wallLongWidth, wallShortHeight);
@@ -62,11 +59,7 @@ function drawPath() {
   rect(0, 155, wallShortWidth, wallLongHeight);
   rect(0, 205, wallLongWidth, wallShortHeight);
   rect(30, 205, wallShortWidth, wallLongHeight);
-<<<<<<< HEAD
-  drawTeleport(45, 240);
-=======
-  eventSpace(45, 40);
->>>>>>> acb973e4dda0b64b524e601009eb5c41486e0958
+  trollBlock(45, 240);
 }
 
 function drawEndSquare() {
@@ -81,21 +74,13 @@ function drawMaze() {
     drawStartSquare();
     drawEndSquare();
     drawPath();
-<<<<<<< HEAD
+    drawReversedPath();
   }
   
   if (state === "change") {
     state = "maze";
   }
 
-=======
-  }
-  
-  if (state === "change") {
-    state = "maze";
-  }
-  
->>>>>>> acb973e4dda0b64b524e601009eb5c41486e0958
   if (state === "maze") {
     background(0);
     drawStartSquare();
@@ -121,7 +106,7 @@ function handleKeys() {
       x -= squareSpeed;
     }
   }
-  
+
   if (movementState === "reversed") {
     if (keyIsDown(87)) { //w
       y += squareSpeed;
@@ -133,20 +118,13 @@ function handleKeys() {
       x -= squareSpeed;
     }
     if (keyIsDown(65)) { //a
-      x += squareSpeed:
+      x += squareSpeed;
     }
   }
+}
   
 function drawSquare() {
   fill("white");
   noStroke();
   square(x, y, 10);
-}
-
-function respawnSquare() {
-  drawSquare();
-}
-
-function squareInsideRect(left, right, top,  bottom) {
-  return squareSpeed - x >= left && squareSpeed + x <= right && squareSpeed - y >= top && squareSpeed + y <= bottom; 
 }
