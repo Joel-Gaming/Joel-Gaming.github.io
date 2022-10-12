@@ -31,15 +31,6 @@ function drawReversedPath() {
   rect();
 }
 
-function changemovemement() {
-  if (state === "normal") {
-    state = "reversed";
-  }
-  if (state === "reversed") {
-    state = "normal";
-  }
-}
-
 function trollBlock(w, h) {
   fill(color);
   square(w, h, wallShortWidth);
