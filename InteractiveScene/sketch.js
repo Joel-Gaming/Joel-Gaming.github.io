@@ -9,7 +9,7 @@ let wallLongWidth = 30;
 let wallShortWidth = 15;
 let wallLongHeight = 50;
 let wallShortHeight = 15;
-let squareSpeed = 5;
+let squareSpeed = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -24,6 +24,13 @@ function draw() {
 function drawStartSquare() {
   fill("green");
   square(0, 0, 30);
+}
+
+function drawTeleport(a, y) {
+  fill("yellow");
+  square(a, y, 15);
+  
+  square(a);
 }
 
 function drawPath() {
@@ -42,12 +49,12 @@ function drawPath() {
   rect(0, 155, wallShortWidth, wallLongHeight);
   rect(0, 205, wallLongWidth, wallShortHeight);
   rect(30, 205, wallShortWidth, wallLongHeight);
-  rect();
+  drawTeleport(45, 240);
 }
 
 function drawEndSquare() {
   fill("red");
-  square(windowWidth-25, windowHeight-25, 30);
+  square(windowWidth-30, windowHeight-30, 30);
 }
 
 function drawMaze() {
