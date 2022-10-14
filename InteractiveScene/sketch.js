@@ -10,6 +10,8 @@ let wallShortWidth = 15;
 let wallLongHeight = 50;
 let wallShortHeight = 15;
 let squareSpeed = 1;
+let w = 105;
+let h = 240;
 let movementState = "normal";
 
 function setup() {
@@ -31,9 +33,23 @@ function drawReversedPath() {
   rect();
 }
 
-function trollBlock(w, h) {
-  fill(color);
-  square(w, h, wallShortWidth);
+function squareInsideBox(left, right, top, bottom) {
+  if (x >= left && x <= right && y >= top && y <= bottom) {
+    if (movementState === "normal") {
+      movementState = "reversed";
+    }
+  }
+}
+
+function mouseClicked() {
+  if (w === 105 && h === 240) {
+    squareInsideBox(w, wallShortWidth, h, wallShortHeight);
+  } 
+}
+
+function trollBlock() {
+  fill("yellow");
+  rect(w, h, wallShortWidth, wallShortHeight);
 }
 
 function drawPath() {
@@ -52,7 +68,9 @@ function drawPath() {
   rect(0, 155, wallShortWidth, wallLongHeight);
   rect(0, 205, wallLongWidth, wallShortHeight);
   rect(30, 205, wallShortWidth, wallLongHeight);
-  trollBlock(45, 240);
+  rect(45, 240, wallLongWidth, wallShortHeight);
+  rect(75, 240, wallLongWidth, wallShortHeight);
+  trollBlock(105, 240);
 }
 
 function drawEndSquare() {
