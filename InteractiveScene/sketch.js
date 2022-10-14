@@ -33,23 +33,14 @@ function drawReversedPath() {
   rect();
 }
 
-function squareInsideBox(left, right, top, bottom) {
-  if (x >= left && x <= right && y >= top && y <= bottom) {
-    if (movementState === "normal") {
-      movementState = "reversed";
-    }
-  }
-}
-
 function mouseClicked() {
-  if (w === 105 && h === 240) {
+  if (x >= 105 && x <=&& h <= 240) {
     squareInsideBox(w, wallShortWidth, h, wallShortHeight);
   } 
 }
 
 function trollBlock() {
   fill("yellow");
-  rect(w, h, wallShortWidth, wallShortHeight);
 }
 
 function drawPath() {
