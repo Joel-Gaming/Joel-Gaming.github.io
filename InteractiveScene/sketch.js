@@ -11,12 +11,15 @@ let wallLongHeight = 50;
 let wallShortHeight = 15;
 let squareSpeed = 1;
 let movementState = "normal";
+let bgcolor;
+let bg = "bgcolor";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
+  background(bg);
   drawMaze();
   handleKeys();
   drawSquare();
@@ -70,7 +73,7 @@ function drawEndSquare() {
 
 function drawMaze() {
   if (state === "start") {
-    background(255);
+    bgcolor(255);
     handleKeys();
     drawStartSquare();
     drawEndSquare();
@@ -83,7 +86,7 @@ function drawMaze() {
   }
 
   if (state === "maze") {
-    background(0);
+    bgcolor(0);
     drawStartSquare();
     drawEndSquare();
     drawPath();
