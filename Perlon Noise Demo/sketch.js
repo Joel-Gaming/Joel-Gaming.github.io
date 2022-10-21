@@ -2,24 +2,33 @@
 // Joel Penner
 // Date
 
-let x;
-let y;
-let radius;
-let time = 0;
+let allCircles = [];
+
+function keyPressed() {
+  let theBall = {
+    x:  random(width),
+    y:  random(height),
+    radius: random(50, 100),
+    time: random(5000),
+  };
+  allCircles.push();
+}
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  x = width/2;
-  y = height/2;
-  radius = 75;
 }
 
 function draw() {
   background(220);
   fill("black");
-  x = noise(time) * width;
-  y = noise(time + 5000) * height;
 
-  time += 0.01;
-  circle(x, y, radius*2);
+  for (let i = 0; i < allCircles.length; i++) {
+    allCircles[i].x = noise(allCircles[i].time) * width;
+    allCircles[i].y = noise(allCircles[i].time + 5000) * height;
+
+    allCircles[i].time += 0.01;
+
+    circle(allCircles[i].x, allCircles[i].y, allCircles[i].radius*2);
+  }
 }
