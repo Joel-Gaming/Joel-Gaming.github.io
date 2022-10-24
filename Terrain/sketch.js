@@ -7,7 +7,7 @@ let startingLocation = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  theHeights = generateHeights(25000);
+  theHeights = generateHeights(2000);
 }
 
 function draw() {
