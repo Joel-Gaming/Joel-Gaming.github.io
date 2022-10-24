@@ -12,15 +12,25 @@ function setup() {
 function draw() {
   background(220);
 
-  for (let i = 0; i<theCircles.length; i++) {
+  //move
+  for (let i=0; i<theCircles.length; i++) {
     theCircles[i].x += theCircles[i].dx;
     theCircles[i].y += theCircles[i].dy;
+
+    //left-right edges
+    if (theCircles[i].x + theCircles[i].radius > width ||
+       theCircles[i].x - theCircles[i].radius < 0) {
+      theCircles[i].dx *= -1;
+    }
+
+    //top-bottom edges
+    if (theCircles[i].y + theCircles[i].radius > height || 
+      theCircles[i].y - theCircles[i].radius < 0) {
+      theCircles[i].dy *= -1;
+    }
   }
-
-  showBall();
-}
-
-function showBall() {
+  
+  //display
   for (let thisCircle of theCircles) {
     fill(thisCircle.theColor);
     noStroke();
