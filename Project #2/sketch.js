@@ -5,6 +5,7 @@
 let grid = [[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [4, 0, 0, 0, 0, 5, 0, 0, 0, 0, 6]]
 
 function setup() {
@@ -24,6 +25,17 @@ function displayGrid(grid) {
         fill("white");
       }
       else if (grid[y][x] === 1) {
+        fill("red");
+      }
+      else if (grid[y][x] === 2) {
+        fill("blue");
+      }
+      else if (grid[y][x] === 3) {
+        fill("yellow");
+      }                
+      else if (grid[y][x] === 4) {
+        fill("green");
+      }      else if (grid[y][x] === 5) {
         fill("black");
       }
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
