@@ -35,11 +35,8 @@ let movementState = "normal";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  let tempWidth = windowWidth
-  let tempHeight
-  cellWidth = tempWidth/COLS;
-  cellHeight = tempHeight/ROWS;
-  spawn = (0, windowHeight/2, 15);
+  cellWidth = width/COLS;
+  cellHeight = height/ROWS;
 }
 
 function draw() {
