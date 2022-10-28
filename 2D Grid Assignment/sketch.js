@@ -11,7 +11,7 @@ let state = "start";
 
 // For the main board
 const ROWS = 100;
-const COLS =  100;
+const COLS =  100
 let grid;
 let cellWidth;
 let cellHeight;
@@ -35,8 +35,10 @@ let movementState = "normal";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  cellWidth = width/COLS;
-  cellHeight = height/ROWS;
+  let tempWidth = windowWidth
+  let tempHeight
+  cellWidth = tempWidth/COLS;
+  cellHeight = tempHeight/ROWS;
   spawn = (0, windowHeight/2, 15);
 }
 
