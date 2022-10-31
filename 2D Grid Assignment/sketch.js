@@ -9,10 +9,10 @@
 let state = "start";
 
 //  For Character Creation and Class Selection
+let names = ["Joel", "Josh", "Amber", "Lizzy", "Gem", "Luke", "Tina"]
 let playerInfo = {
   name:
   race:
-
   health:
   speed:
 };
