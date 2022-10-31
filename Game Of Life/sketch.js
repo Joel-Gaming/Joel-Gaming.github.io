@@ -39,8 +39,8 @@ function keyPressed() {
   if (key === "a") {
     autoPlay = !autoPlay;
   }
-  if (key === "g") {
-    grid = gosperGun;
+  if (key === "f") {
+    grid[y][x] = 1;
   }
 }
 
