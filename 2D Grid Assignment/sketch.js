@@ -29,9 +29,9 @@ let wallLongWidth;
 let wallShortWidth;
 let wallLongHeight;
 let wallShortHeight;
-let squareSpeed;
 let movementState = "normal";
-
+let playerX = 0;
+let playerY = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
