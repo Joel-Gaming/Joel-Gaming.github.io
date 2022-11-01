@@ -87,6 +87,22 @@ function displayGrid(grid) {
   }
 }
 
+function createRandom2dArray(cols, rows) {
+  let emptyArray = [];
+  for (let y=0; y<rows; y++) {
+    emptyArray.push([]);
+    for (let x=0; x<cols; x++) {
+      if (random(100) < 50) {
+        emptyArray[y].push(0);
+      }
+      else {
+        emptyArray[y].push(1);
+      }
+    }
+  }
+  return emptyArray;
+}
+
 // Red Light Green Light
 function checkIfLightSwitched() {
   if (lightState === "green" && millis() > lastTimeSwitched + greenLightDuration) {
