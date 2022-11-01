@@ -8,15 +8,6 @@
 // For the start screen
 let state = "start";
 
-//  For Character Creation and Class Selection
-let names = ["Joel", "Josh", "Amber", "Lizzy", "Gem", "Luke", "Tina"]
-let playerInfo = {
-  name:
-  race:
-  health:
-  speed:
-};
-
 // For the main board
 const ROWS = 100;
 const COLS =  100;
@@ -50,6 +41,12 @@ function setup() {
 
 function draw() {
   background(220);
+  if (state === "start") {
+    startScreen();
+  }
+  if (state === "board") {
+    displayGrid(grid);
+  }
 }
 
 // startScreen
@@ -69,36 +66,8 @@ function mouseInsideRect(left, right, top,  bottom) {
 
 function mousePressed() {
   if (state === "start" && mouseInsideRect(400, 700, 400, 550)){
-    state = "character Creator";
+    state = "board";
   }
-}
-
-// Character Creator and Class Selection;
-function characterName() {
-  playerInfo.name = random(names);
-}
-
-function selectRace() {
-  playerInfo.race(keyPressed());
-}
-
-function nonSelectableItems() {
-    playerInfo.health = random(50, 300);
-    playerInfo.speed = random(1, 10);
-}
-
-function keyPressed() {
-  let tempRace;
-  if (key === "e") {
-    tempRace = "elf";
-  }
-  if (key === "d") {
-    tempRace = "dwarf";
-  }
-  if (key === "g") {
-    tempRace = "goblin";    
-  }
-  return tempRace;
 }
 
 // for MainBoard
@@ -172,4 +141,3 @@ function drawEscapeSquare() {
   fill("red");
   square(random(windowWidth-30), random(windowHeight-30), 30);
 }
-
