@@ -110,7 +110,7 @@ function displayGrid(grid) {
         // fill("red");
         // rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
         image(grassImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
-        image(wolfImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        image(leafImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
     }
   }
