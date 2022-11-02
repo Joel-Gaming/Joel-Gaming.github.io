@@ -8,6 +8,16 @@
 // For the start screen
 let state = "start";
 
+//  For Character Creation and Class Selection
+let names = ["Joel", "Josh", "Amber", "Lizzy", "Gem", "Luke", "Tina"];
+let playerInfo = {
+  name: "unselected",
+  race: "unselected",
+  class: "unselected",
+  health: 0,
+  speed: 0,
+};
+
 // For the main board
 const ROWS = 100;
 const COLS =  100;
@@ -29,9 +39,9 @@ let wallLongWidth;
 let wallShortWidth;
 let wallLongHeight;
 let wallShortHeight;
+let squareSpeed;
 let movementState = "normal";
-let playerX = 0;
-let playerY = 0;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -85,6 +95,17 @@ function displayGrid(grid) {
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
   }
+}
+
+function create2dArray(cols, rows) {
+  let emptyArray = [];
+  for (let y=0; y<rows; y++) {
+    emptyArray.push([]);
+    for (let x=0; x<cols; x++) {
+      emptyArray[y].push(0);
+    }
+  }
+  return emptyArray;
 }
 
 function createRandom2dArray(cols, rows) {
