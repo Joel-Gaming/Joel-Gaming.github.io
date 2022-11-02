@@ -47,6 +47,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   cellWidth = width/COLS;
   cellHeight = height/ROWS;
+  grid = createRandom2dArray(COLS, ROWS);
 }
 
 function draw() {
@@ -95,17 +96,6 @@ function displayGrid(grid) {
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
   }
-}
-
-function create2dArray(cols, rows) {
-  let emptyArray = [];
-  for (let y=0; y<rows; y++) {
-    emptyArray.push([]);
-    for (let x=0; x<cols; x++) {
-      emptyArray[y].push(0);
-    }
-  }
-  return emptyArray;
 }
 
 function createRandom2dArray(cols, rows) {
