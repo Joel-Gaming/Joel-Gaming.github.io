@@ -1,7 +1,3 @@
-// Project Title
-// Joel Penner
-// Date
-
 const ROWS = 40;
 const COLS = 40;
 let grid;
@@ -9,9 +5,15 @@ let cellWidth;
 let cellHeight;
 let playerX = 0;
 let playerY = 0;
-let grassimg = grass2.png;
-let stoneimg = rock1.png;
-let
+let stoneImg;
+let grassImg;
+let leafImg;
+
+function preload() {
+  stoneImg = loadImage("stone.png");
+  grassImg = loadImage("grass.png");
+  leafImg = loadImage("leaf.png");
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -97,14 +99,18 @@ function displayGrid(grid) {
   for (let y=0; y<ROWS; y++) {
     for (let x=0; x<COLS; x++) {
       if (grid[y][x] === 0) {
-        image(grassimg);
+        // fill("white");
+        image(grassImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
       else if (grid[y][x] === 1) {
-        fill("black");
+        // fill("black");
+        image(stoneImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
       else if (grid[y][x] === 9) {
-        fill(playerimg,);
-        rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        // fill("red");
+        // rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        image(grassImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        image(wolfImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
     }
   }
