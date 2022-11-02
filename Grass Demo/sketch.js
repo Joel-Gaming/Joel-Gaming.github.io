@@ -9,6 +9,9 @@ let cellWidth;
 let cellHeight;
 let playerX = 0;
 let playerY = 0;
+let grassimg = grass2.png;
+let stoneimg = rock1.png;
+let
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -94,15 +97,15 @@ function displayGrid(grid) {
   for (let y=0; y<ROWS; y++) {
     for (let x=0; x<COLS; x++) {
       if (grid[y][x] === 0) {
-        fill("white");
+        image(grassimg);
       }
       else if (grid[y][x] === 1) {
         fill("black");
       }
       else if (grid[y][x] === 9) {
-        fill("red");
+        fill(playerimg,);
+        rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
-      rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
   }
 }

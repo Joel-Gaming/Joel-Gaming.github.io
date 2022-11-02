@@ -5,22 +5,16 @@
 // Extra for Experts:
 //
 
+// Images for project
+let amberImg;
+let lukeImg;
+
 // For the start screen
 let state = "start";
 
-//  For Character Creation and Class Selection
-let names = ["Joel", "Josh", "Amber", "Lizzy", "Gem", "Luke", "Tina"];
-let playerInfo = {
-  name: "unselected",
-  race: "unselected",
-  class: "unselected",
-  health: 0,
-  speed: 0,
-};
-
 // For the main board
-const ROWS = 100;
-const COLS =  100;
+const ROWS = 40;
+const COLS =  40;
 let grid;
 let cellWidth;
 let cellHeight;
@@ -42,7 +36,7 @@ let wallShortHeight;
 let squareSpeed;
 let movementState = "normal";
 
-
+//
 function setup() {
   createCanvas(windowWidth, windowHeight);
   cellWidth = width/COLS;
@@ -58,6 +52,11 @@ function draw() {
   if (state === "board") {
     displayGrid(grid);
   }
+}
+
+//image loader
+function preload() {
+  amberImg = image("amber.png");
 }
 
 // startScreen
@@ -88,26 +87,50 @@ function displayGrid(grid) {
   for (let y=0; y<grid.length; y++) {
     for (let x=0; x<grid[y].length; x++) {
       if (grid[y][x] === 0) {
-        fill("white");
+        fill("maroon");
       }
       else if (grid[y][x] === 1) {
+        fill("lightGreen");
+      }
+      else if (grid[y][x] === 2) {
+        fill("lightblue");
+      }
+      else if (grid[y][x] === 3) {
+        fill("white");
+      }
+      else if (grid[y][x] === 4) {
         fill("black");
+      }
+      else if (grid[y][x] === 5) {
+        fill("pink");
       }
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
   }
 }
 
-function createRandom2dArray(cols, rows) {
+function createRandom2dArray(COLS, ROWS) {
   let emptyArray = [];
-  for (let y=0; y<rows; y++) {
+  for (let y=0; y<ROWS; y++) {
     emptyArray.push([]);
-    for (let x=0; x<cols; x++) {
-      if (random(100) < 50) {
+    for (let x=0; x<COLS; x++) {
+      if (random(300) < 50) {
         emptyArray[y].push(0);
       }
-      else {
+      else if (random(300) < 100) {
         emptyArray[y].push(1);
+      }
+      else if (random(300) < 150) {
+        emptyArray[y].push(2);
+      }
+      else if (random(300) < 200) {
+        emptyArray[y].push(3);
+      }
+      if (random(300) < 250) {
+        emptyArray[y].push(4);
+      }
+      else {
+        emptyArray[y].push(5);
       }
     }
   }
