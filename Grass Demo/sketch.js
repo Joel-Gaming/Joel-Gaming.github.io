@@ -1,3 +1,7 @@
+// Grass Demo
+// Joel Penner
+// November 3 2022
+
 const ROWS = 40;
 const COLS = 40;
 let grid;
@@ -7,12 +11,12 @@ let playerX = 0;
 let playerY = 0;
 let stoneImg;
 let grassImg;
-let leafImg;
+let plyImg;
 
 function preload() {
-  stoneImg = loadImage("stone.png");
+  stoneImg = loadImage("rock1.png");
   grassImg = loadImage("grass.png");
-  leafImg = loadImage("leaf.png");
+  plyImg = loadImage("coin.png");
 }
 
 function setup() {
@@ -110,7 +114,7 @@ function displayGrid(grid) {
         // fill("red");
         // rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
         image(grassImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
-        image(leafImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+        image(plyImg, x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       }
     }
   }
