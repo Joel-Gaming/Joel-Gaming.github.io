@@ -10,7 +10,7 @@ let grassImg;
 let leafImg;
 
 function preload() {
-  stoneImg = loadImage("rock1.png");
+  stoneImg = loadImage("stone.png");
   grassImg = loadImage("grass.png");
   leafImg = loadImage("leaf.png");
 }

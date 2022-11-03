@@ -18,7 +18,7 @@ const COLS =  40;
 let grid;
 let cellWidth;
 let cellHeight;
-let event;
+let currentEvent;
 
 // For Red light Green Light
 let spawn;
