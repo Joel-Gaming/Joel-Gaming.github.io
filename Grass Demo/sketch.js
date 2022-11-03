@@ -15,8 +15,8 @@ let plyImg;
 
 function preload() {
   stoneImg = loadImage("rock1.png");
-  grassImg = loadImage("grass.png");
-  plyImg = loadImage("coin.png");
+  grassImg = loadImage("grass2.png");
+  plyImg = loadImage("leaf.png");
 }
 
 function setup() {
