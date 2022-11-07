@@ -5,6 +5,8 @@
 // Extra for Experts:
 //
 
+// playerInfo
+
 // Images for project
 let amberImg;
 let lukeImg;
@@ -30,19 +32,23 @@ let lastTimeSwitched = 0;
 let lightState;
 
 // For Maze
-let wallLongWidth;
-let wallShortWidth;
-let wallLongHeight;
-let wallShortHeight;
-let squareSpeed;
+let show;
+let maze = {};
+let innerMaze;
 let movementState = "normal";
+let sX = 0;
+let sY = 0;
+let playerX = 0;
+let playerY = 0;
 
-//
+//allModes
 function setup() {
   createCanvas(windowWidth, windowHeight);
   cellWidth = width/COLS;
   cellHeight = height/ROWS;
   grid = createRandom2dArray(COLS, ROWS);
+  innerMaze = createRandomizedInnerMaze();
+  maze = drawStartSquare(), innerMaze, drawEndSquare();
 }
 
 function draw() {
@@ -52,6 +58,9 @@ function draw() {
   }
   if (state === "board") {
     displayGrid(grid);
+  }
+  if (state === "maze") {
+    displayMaze(maze);
   }
 }
 
@@ -77,7 +86,7 @@ function mouseInsideRect(left, right, top,  bottom) {
 
 function mousePressed() {
   if (state === "start" && mouseInsideRect(400, 700, 400, 550)){
-    state = "board";
+    state = "maze";
   }
 }
 
@@ -183,12 +192,108 @@ function minigameRedLightGreenLight() {
 }
 
 // Maze game
-function drawStartSquare() {
-  fill("green");
-  square(0, 0, 30);
+function minigameMaze() {
+  displayMaze(maze);
+  displayPlayer();
 }
 
-function drawEscapeSquare() {
+function displayPlayer() {
+  maze[playerY][playerX] = 9;
+}
+
+function displayMaze(maze) {
+  for (let y=0; y<ROWS; y++) {
+    for (let x=0; x<COLS; x++) {
+      if (grid[y][x] === 0) {
+        fill("white");
+      }
+      else if (grid[y][x] === 1) {
+        fill("black");
+      }
+      else if (grid[y][x] === 9) {
+        fill("red");
+      }
+      rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+    }
+  }
+}
+
+function handlePlayer() {
+  if (keyCode === RIGHT_ARROW) {
+    if (maze[playerY][playerX+1] === 0) {
+      //reset old location to white
+      maze[playerY][playerX] = 0;
+      
+      //move
+      playerX++;
+
+      //set new player location
+      maze[playerY][playerX] = 9;
+    }
+  }
+
+  if (keyCode === LEFT_ARROW) {
+    if (maze[playerY][playerX-1] === 0) {
+      //reset old location to white
+      maze[playerY][playerX] = 0;
+      
+      //move
+      playerX--;
+
+      //set new player location
+      maze[playerY][playerX] = 9;
+    }
+  }
+
+  if (keyCode === UP_ARROW) {
+    if (maze[playerY-1][playerX] === 0) {
+      //reset old location to white
+      maze[playerY][playerX] = 0;
+      
+      //move
+      playerY--;
+
+      //set new player location
+      maze[playerY][playerX] = 9;
+    }
+  }
+
+  if (keyCode === DOWN_ARROW) {
+    if (maze[playerY+1][playerX] === 0) {
+      //reset old location to white
+      maze[playerY][playerX] = 0;
+      
+      //move
+      playerY++;
+
+      //set new player location
+      maze[playerY][playerX] = 9;
+    }
+  }
+}
+
+function createRandomizedInnerMaze(COLS, ROWS) {
+  let emptyArray = [];
+  for (let y=0; y<ROWS; y++) {
+    emptyArray.push([]);
+    for (let x=0; x<COLS; x++) {
+      if (random(100) < 50) {
+        emptyArray[y].push(0);
+      }
+      else {
+        emptyArray[y].push(1);
+      }
+    }
+  }
+  return emptyArray;
+}
+
+function drawStartSquare() {
+  fill("green");
+  square(0, 0, 1);
+}
+
+function drawEndSquare() {
   fill("red");
-  square(random(windowWidth-30), random(windowHeight-30), 30);
+  square(windowWidth-1, windowHeight-1, 1);
 }
