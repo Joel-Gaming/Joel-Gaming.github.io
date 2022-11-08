@@ -13,6 +13,7 @@ let lukeImg;
 
 // For the start screen
 let state = "start";
+let startMusic;
 
 // For the main board
 const ROWS = 40;
@@ -21,6 +22,8 @@ let grid;
 let cellWidth;
 let cellHeight;
 let currentEvent;
+let timesMoved = 0;
+let boardMusic;
 
 // For Red light Green Light
 let spawn;
@@ -38,8 +41,8 @@ let innerMaze;
 let movementState = "normal";
 let sX = 0;
 let sY = 0;
-let playerY;
-let playerX;
+let playerY = 0;
+let playerX = 0;
 
 //allModes
 function setup() {
@@ -57,6 +60,9 @@ function draw() {
   }
   if (state === "board") {
     displayGrid(grid);
+  }
+  if (timesMoved  === 30) {
+    endScreen();
   }
 }
 
@@ -134,12 +140,6 @@ function createRandom2dArray(COLS, ROWS) {
       else if (random(200) < 199) {
         emptyArray[y].push(1);
       }
-      else if (random(200) < 2) {
-        emptyArray[y].push(2);
-      }
-      else if (random(200) > 199) {
-        emptyArray[y].push(3);
-      }
     }
   }
   return emptyArray;
@@ -156,6 +156,7 @@ function keyPressed() {
 
       //set new player location
       grid[playerY][playerX] = 9;
+      timesMoved++;
     }
   }
 
@@ -169,6 +170,7 @@ function keyPressed() {
 
       //set new player location
       grid[playerY][playerX] = 9;
+      timesMoved++;
     }
   }
 
@@ -182,6 +184,7 @@ function keyPressed() {
 
       //set new player location
       grid[playerY][playerX] = 9;
+      timesMoved++;
     }
   }
 
@@ -195,6 +198,21 @@ function keyPressed() {
 
       //set new player location
       grid[playerY][playerX] = 9;
+      timesMoved++;
     }
   }
+}
+
+function endScreen() {
+  displayButton();
+}
+
+function displayButton() {
+  if (mouseInsideRect(400, 700, 400, 550)) {
+    fill("green");
+  }
+  else {
+    fill("yellow");
+  }
+  rect(400, 400, 300, 150);
 }
