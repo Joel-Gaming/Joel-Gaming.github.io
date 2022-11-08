@@ -38,8 +38,8 @@ let innerMaze;
 let movementState = "normal";
 let sX = 0;
 let sY = 0;
-let playerX = 0;
-let playerY = 0;
+let playerY;
+let playerX;
 
 //allModes
 function setup() {
@@ -47,8 +47,7 @@ function setup() {
   cellWidth = width/COLS;
   cellHeight = height/ROWS;
   grid = createRandom2dArray(COLS, ROWS);
-  innerMaze = createRandomizedInnerMaze();
-  maze = drawStartSquare(), innerMaze, drawEndSquare();
+  grid[playerY][playerX] = 9;
 }
 
 function draw() {
@@ -59,8 +58,22 @@ function draw() {
   if (state === "board") {
     displayGrid(grid);
   }
-  if (state === "maze") {
-    displayMaze(maze);
+}
+
+function mousePressed() {
+  if (state === "start" && mouseInsideRect(400, 700, 400, 550)){
+    state = "board";
+  }
+  else if (state === "board") {
+    let xPos = Math.floor(mouseX/cellWidth);
+    let yPos = Math.floor(mouseY/cellHeight);
+
+    if (grid[yPos][xPos] === 0) {
+      grid[yPos][xPos] = 1;
+    }
+    else if (grid[yPos][xPos] === 1) {
+      grid[yPos][xPos] = 0;
+    }
   }
 }
 
@@ -84,12 +97,6 @@ function mouseInsideRect(left, right, top,  bottom) {
   return mouseX >= left && mouseX <= right && mouseY >= top && mouseY <= bottom;
 }
 
-function mousePressed() {
-  if (state === "start" && mouseInsideRect(400, 700, 400, 550)){
-    state = "maze";
-  }
-}
-
 // for MainBoard
 function displayGrid(grid) {
   let cellWidth = width / grid[0].length;
@@ -97,22 +104,19 @@ function displayGrid(grid) {
   for (let y=0; y<grid.length; y++) {
     for (let x=0; x<grid[y].length; x++) {
       if (grid[y][x] === 0) {
-        fill("maroon");
-      }
-      else if (grid[y][x] === 1) {
-        fill("lightGreen");
-      }
-      else if (grid[y][x] === 2) {
-        fill("lightblue");
-      }
-      else if (grid[y][x] === 3) {
         fill("white");
       }
-      else if (grid[y][x] === 4) {
+      else if (grid[y][x] === 1) {
         fill("black");
       }
-      else if (grid[y][x] === 5) {
-        fill("pink");
+      else if (grid[y][x] === 2) {
+        fill("green");
+      }
+      else if (grid[y][x] === 3) {
+        fill("red");
+      }
+      else if (grid[y][x] === 9) {
+        fill("blue");
       }
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
@@ -124,176 +128,73 @@ function createRandom2dArray(COLS, ROWS) {
   for (let y=0; y<ROWS; y++) {
     emptyArray.push([]);
     for (let x=0; x<COLS; x++) {
-      if (random(300) < 50) {
+      if (random(200) < 100) {
         emptyArray[y].push(0);
       }
-      else if (random(300) < 100) {
+      else if (random(200) < 199) {
         emptyArray[y].push(1);
       }
-      else if (random(300) < 150) {
+      else if (random(200) < 2) {
         emptyArray[y].push(2);
       }
-      else if (random(300) < 200) {
+      else if (random(200) > 199) {
         emptyArray[y].push(3);
-      }
-      if (random(300) < 250) {
-        emptyArray[y].push(4);
-      }
-      else {
-        emptyArray[y].push(5);
       }
     }
   }
   return emptyArray;
 }
 
-// Red Light Green Light
-function checkIfLightSwitched() {
-  if (lightState === "green" && millis() > lastTimeSwitched + greenLightDuration) {
-    lightState = "red";
-    lastTimeSwitched = millis();
-  }
-  else if (lightState === "red" && millis() > lastTimeSwitched + redLightDuration) {
-    lightState = "green";
-    lastTimeSwitched = millis();
-  }
-}
-
-function showCorrectLight() {
-  if (lightState === "red") {
-    fill("red");
-    ellipse(width / 2, height / 2 - 65, 50, 50); //top
-  }
-  else if (lightState === "green") {
-    fill("green");
-    ellipse(width / 2, height / 2 + 65, 50, 50); //bottom
-  }
-}
-
-function drawOutlineOfLights() {
-  //box
-  rectMode(CENTER);
-  fill(0);
-  rect(width / 2, height / 2, 75, 200, 10);
-
-  //lights
-  fill(255);
-  ellipse(width / 2, height / 2 - 65, 50, 50); //top
-  ellipse(width / 2, height / 2, 50, 50); //bottom
-}
-
-function minigameRedLightGreenLight() {
-  checkIfLightSwitched();
-  showCorrectLight();
-  for (let i = 0; i < windowWidth; i++) {
-    redLightDuration = random(1000, 10000);
-    greenLightDuration = random(1000, 10000);
-  }
-}
-
-// Maze game
-function minigameMaze() {
-  displayMaze(maze);
-  displayPlayer();
-}
-
-function displayPlayer() {
-  maze[playerY][playerX] = 9;
-}
-
-function displayMaze(maze) {
-  for (let y=0; y<ROWS; y++) {
-    for (let x=0; x<COLS; x++) {
-      if (grid[y][x] === 0) {
-        fill("white");
-      }
-      else if (grid[y][x] === 1) {
-        fill("black");
-      }
-      else if (grid[y][x] === 9) {
-        fill("red");
-      }
-      rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
-    }
-  }
-}
-
-function handlePlayer() {
+function keyPressed() {
   if (keyCode === RIGHT_ARROW) {
-    if (maze[playerY][playerX+1] === 0) {
+    if (grid[playerY][playerX+1] === 0) {
       //reset old location to white
-      maze[playerY][playerX] = 0;
+      grid[playerY][playerX] = 0;
       
       //move
       playerX++;
 
       //set new player location
-      maze[playerY][playerX] = 9;
+      grid[playerY][playerX] = 9;
     }
   }
 
   if (keyCode === LEFT_ARROW) {
-    if (maze[playerY][playerX-1] === 0) {
+    if (grid[playerY][playerX-1] === 0) {
       //reset old location to white
-      maze[playerY][playerX] = 0;
+      grid[playerY][playerX] = 0;
       
       //move
       playerX--;
 
       //set new player location
-      maze[playerY][playerX] = 9;
+      grid[playerY][playerX] = 9;
     }
   }
 
   if (keyCode === UP_ARROW) {
-    if (maze[playerY-1][playerX] === 0) {
+    if (grid[playerY-1][playerX] === 0) {
       //reset old location to white
-      maze[playerY][playerX] = 0;
+      grid[playerY][playerX] = 0;
       
       //move
       playerY--;
 
       //set new player location
-      maze[playerY][playerX] = 9;
+      grid[playerY][playerX] = 9;
     }
   }
 
   if (keyCode === DOWN_ARROW) {
-    if (maze[playerY+1][playerX] === 0) {
+    if (grid[playerY+1][playerX] === 0) {
       //reset old location to white
-      maze[playerY][playerX] = 0;
+      grid[playerY][playerX] = 0;
       
       //move
       playerY++;
 
       //set new player location
-      maze[playerY][playerX] = 9;
+      grid[playerY][playerX] = 9;
     }
   }
-}
-
-function createRandomizedInnerMaze(COLS, ROWS) {
-  let emptyArray = [];
-  for (let y=0; y<ROWS; y++) {
-    emptyArray.push([]);
-    for (let x=0; x<COLS; x++) {
-      if (random(100) < 50) {
-        emptyArray[y].push(0);
-      }
-      else {
-        emptyArray[y].push(1);
-      }
-    }
-  }
-  return emptyArray;
-}
-
-function drawStartSquare() {
-  fill("green");
-  square(0, 0, 1);
-}
-
-function drawEndSquare() {
-  fill("red");
-  square(windowWidth-1, windowHeight-1, 1);
 }
