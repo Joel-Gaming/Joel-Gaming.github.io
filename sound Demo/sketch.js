@@ -7,7 +7,7 @@ let hitSound;
 let backgroundSound;
 
 function preload() {
-  hitSound = loadSound("wind1.wav");
+  hitSound = loadSound("Menu Selection Click.wav");
   backgroundSound =  loadSound("TownTheme.mp3");
 }
 
