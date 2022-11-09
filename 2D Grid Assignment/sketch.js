@@ -13,7 +13,7 @@ let lukeImg;
 
 // For the start screen
 let state = "start";
-let startMusic;
+
 
 // For the main board
 const ROWS = 40;
@@ -23,7 +23,7 @@ let cellWidth;
 let cellHeight;
 let currentEvent;
 let timesMoved = 0;
-let boardMusic;
+let boardSound;
 
 // For Red light Green Light
 let spawn;
@@ -35,7 +35,6 @@ let lastTimeSwitched = 0;
 let lightState;
 
 // For Maze
-let show;
 let maze = {};
 let innerMaze;
 let movementState = "normal";
@@ -53,6 +52,10 @@ function setup() {
   grid[playerY][playerX] = 9;
 }
 
+function preload() {
+  boardSound = loadSound("happy_adventure.mp3");
+}
+
 function draw() {
   background(220);
   if (state === "start") {
@@ -60,6 +63,9 @@ function draw() {
   }
   if (state === "board") {
     displayGrid(grid);
+    if (!boardSound.loop()) {
+      boardSound.loop();
+    }
   }
   if (timesMoved  === 30) {
     endScreen();
@@ -83,11 +89,6 @@ function mousePressed() {
   }
 }
 
-//image loader
-function preload() {
-  amberImg = image("amber.png");
-}
-
 // startScreen
 function startScreen() {
   if (mouseInsideRect(400, 700, 400, 550)) {
@@ -105,6 +106,7 @@ function mouseInsideRect(left, right, top,  bottom) {
 
 // for MainBoard
 function displayGrid(grid) {
+  boardSound.loop();
   let cellWidth = width / grid[0].length;
   let cellHeight = height / grid.length;
   for (let y=0; y<grid.length; y++) {
