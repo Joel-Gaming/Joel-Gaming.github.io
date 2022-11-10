@@ -13,7 +13,7 @@ let lukeImg;
 
 // For the start screen
 let state = "start";
-
+let winSound;
 
 // For the main board
 const ROWS = 40;
@@ -54,6 +54,7 @@ function setup() {
 
 function preload() {
   boardSound = loadSound("happy_adveture.mp3");
+  winSound = loadSound("RainbowRush_loop.ogg");
 }
 
 function draw() {
@@ -63,10 +64,12 @@ function draw() {
   }
   if (state === "board") {
     displayGrid(grid);
-    boardSound.play();
   }
   if (timesMoved  === 30) {
+    state === "won";
+    boardSound.unloop();
     endScreen();
+
   }
 }
 
@@ -84,6 +87,12 @@ function mousePressed() {
     else if (grid[yPos][xPos] === 1) {
       grid[yPos][xPos] = 0;
     }
+  }
+  if (state ==="board" && !boardSound.loop()) {
+    boardSound.loop();
+  }
+  else if (state === "won") {
+    winSound.loop();
   }
 }
 
