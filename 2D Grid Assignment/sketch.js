@@ -53,7 +53,7 @@ function setup() {
 }
 
 function preload() {
-  boardSound = loadSound("happy_adventure.mp3");
+  boardSound = loadSound("happy_adveture.mp3");
 }
 
 function draw() {
@@ -63,9 +63,7 @@ function draw() {
   }
   if (state === "board") {
     displayGrid(grid);
-    if (!boardSound.loop()) {
-      boardSound.loop();
-    }
+    boardSound.play();
   }
   if (timesMoved  === 30) {
     endScreen();
@@ -106,7 +104,6 @@ function mouseInsideRect(left, right, top,  bottom) {
 
 // for MainBoard
 function displayGrid(grid) {
-  boardSound.loop();
   let cellWidth = width / grid[0].length;
   let cellHeight = height / grid.length;
   for (let y=0; y<grid.length; y++) {
