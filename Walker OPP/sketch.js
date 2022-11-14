@@ -23,21 +23,23 @@ class Walker {
   move() {
     let choice = random(100);
 
-    if (choice < 25) {
+    if (choice < 25 && y > 5) {
       //up
       this.y -= this.speed;
     }
-    else if (choice < 50) {
+    else if (choice < 50 && y < windowHeight-5) {
       //down
       this.y += this.speed;
     }
-    else if (choice < 75) {
+    else if (choice < 75 && y > windowWidth - 5) {
       //right
       this.x += this.speed;
     }
     else {
       //left
-      this.x -= this.speed;
+      if (y < 5) {
+        this.x -= this.speed;
+      }
     }
 
   }
