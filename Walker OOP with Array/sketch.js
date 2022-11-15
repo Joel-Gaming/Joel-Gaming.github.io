@@ -1,9 +1,6 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// Walker OOP with Array
+// Joel Penner
+// November 15, 2022
 
 class Walker {
   constructor(x, y) {
@@ -44,30 +41,26 @@ class Walker {
   }
 }
 
-let lizzy;
-let joel;
-let tori;
-let luke;
+let walkerArray = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  lizzy = new Walker (700, 200);
-  joel = new Walker (300, 200);
-  tori = new Walker (width-150, height-150);
-  luke = new Walker (width/2, height/2);
-  joel.color =  "blue";
-  tori.color = "green";
-  luke.color = 0;
+  spawnWalker();
 }
 
 function draw() {
-  lizzy.move();
-  joel.move();
-  tori.move();
-  luke.move();
-  
-  lizzy.display();
-  joel.display();
-  tori.display();
-  luke.display();
+  for (let i = 0; i < walkerArray.length; i++) {
+    walkerArray[i].move();
+    walkerArray[i].display();
+  }
+}
+
+function spawnWalker() {
+  let luke = new Walker(random(width), random(height));
+  let someColor = color(random(255), random(255), random(255));
+  luke.color = someColor;
+  walkerArray.push(luke);
+}
+function keyPressed() {
+  spawnWalker();
 }

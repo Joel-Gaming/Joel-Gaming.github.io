@@ -66,7 +66,6 @@ function draw() {
     displayGrid(grid);
   }
   if (timesMoved  === 30) {
-    state === "won";
     boardSound.unloop();
     endScreen();
 
