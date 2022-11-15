@@ -48,10 +48,9 @@ class Particle {
    } 
  }  
  
- function mousePressed() {
-   let someParticle;
-   for (let i = 0; i < 100; i++) { 
-     someParticle = new Particle(mouseX, mouseY); 
-     theFireworks.push(someParticle); 
-   } 
- } 
+function mousePressed() {
+  for (let i = 0; i < 100; i++) {
+    let someParticle = new Particle(mouseX, mouseY);
+    theFireworks.push(someParticle);
+  }
+}
