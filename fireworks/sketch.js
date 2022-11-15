@@ -5,11 +5,53 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
+class Particle {
+  constructor(x,y) {
+    this.x = x;
+    this.y = y;
+    this.dx = random(-5, 5);
+    this.dy = random(-5, 5);
+    this.diameter = 10;
+    this.r = 255;
+    this.g = 0;
+    this.b = 0;
+    this.alpha = 255;
+    this.color = color(this.r, this.g, this.b, this.alpha);
+  }
+
+  update() {
+    this.x += this.dx;
+    this.y += this.dy;
+    this.alpha--;
+    this.color = color(this.r, this.g, this.b, this.alpha);
+  }
+
+  display() {
+    fill(this.color);
+    stroke(this.color);
+    circle(this.x,this.y, this.diameter);
+  }
+}
+
+let theFireworks = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  background(220);
+  background("black");
+  for (let i = 0; theFireworks.length; i++) {
+    theFireworks[i].update;
+    theFireworks[i].display;
+  }
+}
+
+function mousePressed() {
+  for (let i = 0; i < 100; i++) {
+    let someParticale =
+
+    theFireworks.push(someParticale);
+  }
+    
 }
