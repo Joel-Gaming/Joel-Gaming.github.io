@@ -18,12 +18,16 @@ class Bullet {
   }
   
   display() {
-    image(this.bullet);
+    image(this.bullet, this.x, this.y, 5, 3);
   }
 
   move() {
+    //move left to right
     this.x += this.dx;
-    this.y += this.dy;
+  }
+
+  isDead() {
+    return this.x <= windowWidth;
   }
 }
 
@@ -37,6 +41,20 @@ function draw() {
   background(220);
   for (let i = 0; i < theBullets.length; i++) {
     theBullets[i].move();
-    theBullets.display();
+    if (theBullets[i].isDead()) {
+      //remove from array
+      theBullets.slice(i, 1);
+    }
+    else {
+      theBullets[i].display();
+    }
   }
 }
+
+function mousePressed() {
+  for (let i = 0; i < 10; i++) {
+    let theBullet = new Bullet(mouseX, mouseY);
+    theBullets.push(theBullet);
+  }
+}
+
