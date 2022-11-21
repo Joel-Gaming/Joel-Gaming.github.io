@@ -1,15 +1,28 @@
 // Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
 
+class Button {
+  constructor(x, y, width, height) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+  }
+
+  display() {
+    rect(this.x, this.y, this,width, this.height);
+  }
+}
+
+let button1;
+let button2;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  button1 = new Button (100, 100, 300, 100);
+  button2 = new Button (100, 300, 300, 100);
 }
 
 function draw() {
-  background(220);
+  button1.display();
+  button2.display();
 }
