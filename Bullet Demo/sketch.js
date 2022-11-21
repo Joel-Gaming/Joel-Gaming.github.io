@@ -1,20 +1,20 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// Bullet OOP
+
 class Bullet {
   constructor(theImage) {
-    this.x = 100;
+    this.x = 200;
     this.y = 500;
-    this.bullet = theImage;
     this.dx = 5;
     this.radius = 3;
+    this.image = theImage;
   }
 
   display() {
-    image(this.bullet, this.x, this.y, this.image.width*0.3, this.image.height*0.3);
+    image(this.image, this.x, this.y, 
+      this.image.width*0.1, this.image.height*0.1);
+
+    // fill("black");
+    // circle(this.x, this.y, this.radius*2);
   }
 
   move() {
@@ -40,16 +40,16 @@ function setup() {
 function draw() {
   background(220);
   for (let someBullet of bullets) {
-    bullets.move();
-    bullets.display();
+    someBullet.move();
+    someBullet.display();
   }
 
+  //delete dead bullets
   for (let i = bullets.length-1; i >= 0; i--) {
     if (bullets[i].isDead()) {
       bullets.splice(i, 1);
     }
   }
-
 }
 
 function keyPressed() {
