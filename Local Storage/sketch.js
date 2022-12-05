@@ -1,13 +1,9 @@
-// Local Storage
-// Joel Penner
-// December 5th 2022
-
-let numOfClicks = 0;
+let numberOfClicks = 0;
 let highestEver = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  if (getItem("highscrore") !== null) {
+  if (getItem("highscore") !== null) {
     highestEver = getItem("highscore");
   }
   else {
@@ -20,17 +16,17 @@ function draw() {
 
   fill("black");
   textSize(100);
-  text(numOfClicks, width/2, height/2);
-  
+  text(numberOfClicks, width/2, height/2);
+
   fill("red");
-  text(highestEver, 50, highestEver - 100);
+  text(highestEver, 50, height - 100);
 }
 
 function mousePressed() {
-  numOfClicks++;
+  numberOfClicks++;
 
-  if (numOfClicks > getItem("highscore")) {
-    storeItem("highscore", numOfClicks);
-    highestEver = numOfClicks;
+  if (numberOfClicks > getItem("highscore")) {
+    storeItem("highscore", numberOfClicks);
+    highestEver = numberOfClicks;
   }
 }
