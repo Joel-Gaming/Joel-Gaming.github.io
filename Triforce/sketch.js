@@ -9,7 +9,7 @@ let triangleVertices = [
 ];
 
 let theDepth = 0;
-let theColors = ["yellow", "white", "yellow", "white", "yellow", "white", "yellow", "white"];
+let theColors = ["yellow", "white", "gold", "yellow", "white", "gold", "yellow", "white"];
 
 function setup() {
   createCanvas(1000, 700);
